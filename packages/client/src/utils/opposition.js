@@ -1,12 +1,6 @@
 export function opposition(turn) {
-  switch (turn) {
-    case 1:
-      return 0;
-    case 0:
-      return 1;
-    default:
-      return;
-  }
+  if (turn === 1) return 0;
+  if (turn === 0) return 1;
 }
 
 export default opposition;
