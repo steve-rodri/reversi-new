@@ -1,23 +1,22 @@
 import { createSlice } from "@reduxjs/toolkit";
-import * as reducers from "../reducers/board";
+import * as reducers from "../boardReducers";
 
 const initialState = {
   spaces: [],
   length: 8,
-  gameEnded: false,
   pieceCount: {
     black: 2,
     white: 2,
   },
 };
 
-const boardSlice = createSlice({
+export const {
+  reducer: boardReducer,
+  actions: { initialize, setStartingDiscs, handleSpaceSelect },
+} = createSlice({
   name: "board",
   initialState,
   reducers,
 });
 
-const { actions, reducer } = boardSlice;
-
-export const { initialize, flipDiscs, endGame } = actions;
-export default reducer;
+export default boardReducer;
