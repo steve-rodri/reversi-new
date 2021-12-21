@@ -1,5 +1,5 @@
-import { findOpponentDiscs, canMove, cpuChoice } from "../utils";
-import { updateSpace, switchTurn, endGame } from "./slices";
+import { findOpponentDiscs, checkForMove, cpuChoice } from "../utils";
+import { boardActions, progressionActions } from "./slices";
 
 export const selectSpace = (coordinate, turn) => (dispatch, state) => {
   const { x, y } = coordinate;
@@ -10,28 +10,31 @@ export const selectSpace = (coordinate, turn) => (dispatch, state) => {
   // if player cannot overtake any discs, exit
   if (!opponentDiscs) return;
   // set selected space to current player's disc
-  dispatch(updateSpace(coordinate, turn));
+  dispatch(boardActions.updateSpace(coordinate, turn));
+  // update board disc count
+  dispatch(boardActions.updateDiscCount(coordinate, turn));
 
   // flip all opponent discs
-  opponentDiscs.forEach(coordinate => {
-    dispatch(updateSpace(coordinate, turn));
+  opponentDiscs.forEach(oppCoord => {
+    dispatch(boardActions.updateSpace(oppCoord, turn));
+    dispatch(boardActions.updateDiscCount(oppCoord, turn));
   });
 
   // switch turn
-  dispatch(switchTurn());
-  dispatch(oppositionMove());
+  dispatch(progressionActions.switchTurn());
+  dispatch(opponentMove());
 };
 
-const oppositionMove = backToPlayer => (dispatch, state) => {
-  // check if the opposition can make a move
-  const move = canMove(state);
+const opponentMove = cycleBackToActivePlayer => (dispatch, state) => {
+  // check if the opponent can make a move
+  const move = checkForMove(state);
   // if there is no move
   if (!move) {
     // switch turn to see if the player can make a move
-    dispatch(switchTurn());
-    if (!backToPlayer) dispatch(oppositionMove(true));
+    dispatch(progressionActions.switchTurn());
+    if (!cycleBackToActivePlayer) dispatch(opponentMove(true));
     // if both players cannot make a move the game is over
-    if (backToPlayer) dispatch(endGame());
+    if (cycleBackToActivePlayer) dispatch(progressionActions.endGame());
   }
   // if there is a cpu and it is the CPU's turn to move
   const cpu = state.players.find(player => player.name === "CPU");

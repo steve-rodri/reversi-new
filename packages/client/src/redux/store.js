@@ -1,18 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
-import {
-  boardReducer,
-  playedReducer,
-  playersReducer,
-  overReducer,
-  turnReducer,
-} from "./slices";
+import { boardReducer, playersReducer, progressionReducer } from "./slices";
 
 const reducer = {
   board: boardReducer,
   players: playersReducer,
-  played: playedReducer,
-  over: overReducer,
-  turn: turnReducer,
+  progression: progressionReducer,
 };
 
 export default configureStore({ reducer });
