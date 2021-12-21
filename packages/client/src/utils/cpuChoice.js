@@ -1,12 +1,8 @@
-import { possibleMoves } from "./canMove";
+import { getPossibleMoves } from "./checkForMove";
 import shuffle from "./shuffle";
 
-export function cpuChoice(state) {
-  let possibleMovesArray = possibleMoves(state);
-  possibleMovesArray = shuffle(possibleMovesArray);
-  return possibleMovesArray[
-    Math.floor(Math.random() * possibleMovesArray.length)
-  ];
+export default function cpuChoice(state) {
+  let possibleMoves = getPossibleMoves(state);
+  possibleMoves = shuffle(possibleMovesArray);
+  return possibleMoves[Math.floor(Math.random() * possibleMoves.length)];
 }
-
-export default cpuChoice;
