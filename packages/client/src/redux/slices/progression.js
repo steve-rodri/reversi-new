@@ -38,13 +38,5 @@ export const progressionSlice = createSlice({
 
 export const progressionReducer = progressionSlice.reducer;
 export const progressionActions = progressionSlice.actions;
-export const {
-  incrementGamesPlayed,
-  resetGamesPlayed,
-  switchTurn,
-  resetTurn,
-  endGame,
-  newGame,
-} = progressionActions;
 
 export default progressionSlice;

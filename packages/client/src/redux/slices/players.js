@@ -16,5 +16,4 @@ export const playerSlice = createSlice({
 
 export const playerReducer = playerSlice.reducer;
 export const playerActions = playerSlice.actions;
-export const { addPlayer, removePlayer, updatePlayer } = playerActions;
 export default playerSlice;

@@ -67,11 +67,4 @@ export const boardSlice = createSlice({
 
 export const boardReducer = boardSlice.reducer;
 export const boardActions = boardSlice.actions;
-export const {
-  initialize,
-  setStartingDiscs,
-  updateSpace,
-  updateDiscCount,
-} = boardActions;
-
 export default boardSlice;
