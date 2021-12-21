@@ -1,4 +1,4 @@
-import opposition from "../opposition";
+import opposition from "../opponent";
 
 export default function checkHorizontal(...params) {
   const left = checkLeft(...params);
@@ -7,30 +7,30 @@ export default function checkHorizontal(...params) {
 }
 
 function checkLeft(coordinate, activePlayer, spaces) {
-  const opposingDiscs = [];
+  const opponentDiscs = [];
   const opponent = opposition(activePlayer);
   let { x, y } = coordinate;
   x--;
   while (x >= 0) {
     const space = spaces[y][x];
     if (space === "x") return [];
-    if (space === activePlayer) return opposingDiscs;
-    if (space === opponent) opposingDiscs.push({ x, y });
+    if (space === activePlayer) return opponentDiscs;
+    if (space === opponent) opponentDiscs.push({ x, y });
     x--;
   }
   return [];
 }
 
 function checkRight(coordinate, activePlayer, spaces) {
-  const opposingDiscs = [];
+  const opponentDiscs = [];
   const opponent = opposition(activePlayer);
   let { x, y } = coordinate;
   x++;
   while (x < spaces.length) {
     const space = spaces[y][x];
     if (space === "x") return [];
-    if (space === activePlayer) return opposingDiscs;
-    if (space === opponent) opposingDiscs.push({ x, y });
+    if (space === activePlayer) return opponentDiscs;
+    if (space === opponent) opponentDiscs.push({ x, y });
     x++;
   }
   return [];

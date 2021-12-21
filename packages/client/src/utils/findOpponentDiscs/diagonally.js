@@ -1,4 +1,4 @@
-import opposition from "../opposition";
+import opposition from "../opponent";
 
 export default function checkDiagonally(...params) {
   const upLeft = checkUpLeft(...params);
@@ -9,7 +9,7 @@ export default function checkDiagonally(...params) {
 }
 
 function checkUpRight(coordinate, activePlayer, spaces) {
-  const opposingDiscs = [];
+  const opponentDiscs = [];
   const opponent = opposition(activePlayer);
   let { x, y } = coordinate;
   x++;
@@ -17,8 +17,8 @@ function checkUpRight(coordinate, activePlayer, spaces) {
   while (x < spaces.length && y >= 0) {
     const space = spaces[y][x];
     if (space === "x") return [];
-    if (space === activePlayer) return opposingDiscs;
-    if (space === opponent) opposingDiscs.push({ x, y });
+    if (space === activePlayer) return opponentDiscs;
+    if (space === opponent) opponentDiscs.push({ x, y });
     x++;
     y--;
   }
@@ -26,7 +26,7 @@ function checkUpRight(coordinate, activePlayer, spaces) {
 }
 
 function checkDownLeft(coordinate, activePlayer, spaces) {
-  const opposingDiscs = [];
+  const opponentDiscs = [];
   const opponent = opposition(activePlayer);
   let { x, y } = coordinate;
   x--;
@@ -34,8 +34,8 @@ function checkDownLeft(coordinate, activePlayer, spaces) {
   while (x >= 0 && y < spaces.length) {
     const space = spaces[y][x];
     if (space === "x") return [];
-    if (space === activePlayer) return opposingDiscs;
-    if (space === opponent) opposingDiscs.push({ x, y });
+    if (space === activePlayer) return opponentDiscs;
+    if (space === opponent) opponentDiscs.push({ x, y });
     x--;
     y++;
   }
@@ -43,7 +43,7 @@ function checkDownLeft(coordinate, activePlayer, spaces) {
 }
 
 function checkUpLeft(coordinate, activePlayer, spaces) {
-  const opposingDiscs = [];
+  const opponentDiscs = [];
   const opponent = opposition(activePlayer);
   let { x, y } = coordinate;
   x--;
@@ -51,8 +51,8 @@ function checkUpLeft(coordinate, activePlayer, spaces) {
   while (x >= 0 && y >= 0) {
     const space = spaces[y][x];
     if (space === "x") return [];
-    if (space === activePlayer) return opposingDiscs;
-    if (space === opponent) opposingDiscs.push({ x, y });
+    if (space === activePlayer) return opponentDiscs;
+    if (space === opponent) opponentDiscs.push({ x, y });
     x--;
     y--;
   }
@@ -60,7 +60,7 @@ function checkUpLeft(coordinate, activePlayer, spaces) {
 }
 
 function checkDownRight(coordinate, activePlayer, spaces) {
-  const opposingDiscs = [];
+  const opponentDiscs = [];
   const opponent = opposition(activePlayer);
   let { x, y } = coordinate;
   x++;
@@ -68,8 +68,8 @@ function checkDownRight(coordinate, activePlayer, spaces) {
   while (x < spaces.length && y < spaces.length) {
     const space = spaces[y][x];
     if (space === "x") return [];
-    if (space === activePlayer) return opposingDiscs;
-    if (space === opponent) opposingDiscs.push({ x, y });
+    if (space === activePlayer) return opponentDiscs;
+    if (space === opponent) opponentDiscs.push({ x, y });
     x++;
     y++;
   }

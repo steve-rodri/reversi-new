@@ -7,8 +7,8 @@ export function findOpponentDiscs(...params) {
   const horizontal = checkHorizontally(...params);
   const diagonal = checkDiagonally(...params);
 
-  const opposingDiscs = [...vertical, ...horizontal, ...diagonal];
-  if (opposingDiscs.length) return opposingDiscs;
+  const opponentDiscs = [...vertical, ...horizontal, ...diagonal];
+  if (opponentDiscs.length) return opponentDiscs;
 }
 
 export default findOpponentDiscs;
