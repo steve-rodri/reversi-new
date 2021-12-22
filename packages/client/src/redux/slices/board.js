@@ -33,24 +33,16 @@ const updateSpace = (state, action) => {
   return state;
 };
 
-const updateDiscCount = (state, action) => {
-  const { coordinate, turn } = action.payload;
-  const { x, y } = coordinate;
-  const previousValue = state.spaces[y][x];
-
-  if (previousValue === "x") {
-    if (turn === 0) state.discs.black += 1;
-    if (turn === 1) state.discs.white += 1;
-  } else {
-    if (turn === 0) {
-      state.discs.black += 1;
-      state.discs.white -= 1;
-    }
-    if (turn === 1) {
-      state.discs.white += 1;
-      state.discs.black -= 1;
-    }
-  }
+const updateDiscCount = state => {
+  let black = 0;
+  let white = 0;
+  state.spaces.forEach(row => {
+    row.forEach(space => {
+      if (space === 0) black++;
+      if (space === 1) white++;
+    });
+  });
+  state.discs = { black, white };
   return state;
 };
 
