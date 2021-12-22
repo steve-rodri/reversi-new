@@ -7,13 +7,13 @@ import Disc from "./Disc";
 
 const Space = ({ value, coordinate }) => {
   const dispatch = useDispatch();
-  const turn = useSelector(state => state.turn);
-  const onClick = e => {
+  const turn = useSelector(({ progression }) => progression.turn);
+  const onSelect = e => {
     e.stopPropagation();
     dispatch(selectSpace(coordinate, turn));
   };
   return (
-    <Center onClick={onClick} bgColor="board.default" borderRadius={2}>
+    <Center onClick={onSelect} bgColor="board.default" borderRadius={2}>
       {value !== "x" ? <Disc value={value} /> : null}
     </Center>
   );

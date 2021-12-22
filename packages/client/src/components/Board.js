@@ -22,8 +22,8 @@ const Board = () => {
           w="full"
         >
           {spaces.map((row, y) =>
-            row.map((space, x) => (
-              <Space value={space} key={`${x}, ${y}`} coordinate={{ x, y }} />
+            row.map((value, x) => (
+              <Space value={value} key={`${x}, ${y}`} coordinate={{ x, y }} />
             ))
           )}
         </Grid>
