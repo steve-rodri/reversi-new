@@ -1,9 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { boardReducer, playersReducer, progressionReducer } from "./slices";
+import { boardReducer, playerReducer, progressionReducer } from "./slices";
 
 const reducer = {
   board: boardReducer,
-  players: playersReducer,
+  players: playerReducer,
   progression: progressionReducer,
 };
 
