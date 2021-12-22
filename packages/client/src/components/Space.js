@@ -10,7 +10,7 @@ const Space = ({ value, coordinate }) => {
   const turn = useSelector(state => state.turn);
   const onClick = e => {
     e.stopPropagation();
-    dispatch(selectSpace({ coordinate, turn }));
+    dispatch(selectSpace(coordinate, turn));
   };
   return (
     <Center onClick={onClick} bgColor="board.default" borderRadius={2}>
