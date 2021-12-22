@@ -12,7 +12,7 @@ export const getPossibleMoves = ({ board, progression }) => {
       // find all opponent discs with player disc at end
       const opponentDiscs = findOpponentDiscs({ x, y }, turn, spaces); // returns multi-dimensional array
       // if there are no opponentDiscs continue;
-      if (opponentDiscs.length === 0) continue;
+      if (!opponentDiscs?.length) continue;
       // otherwise add current coordinate as possible move;
       possibleMoves.push({
         x: x,
