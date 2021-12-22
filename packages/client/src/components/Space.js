@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { useDispatch, useSelector } from "react-redux";
 import { Center } from "@chakra-ui/react";
-import { handleSpaceSelect } from "../redux/slices";
+import { selectSpace } from "../redux";
 import Disc from "./Disc";
 
 const Space = ({ value, coordinate }) => {
@@ -10,7 +10,7 @@ const Space = ({ value, coordinate }) => {
   const turn = useSelector(state => state.turn);
   const onClick = e => {
     e.stopPropagation();
-    dispatch(handleSpaceSelect({ coordinate, turn }));
+    dispatch(selectSpace({ coordinate, turn }));
   };
   return (
     <Center onClick={onClick} bgColor="board.default" borderRadius={2}>

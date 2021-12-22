@@ -1,15 +1,15 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { AspectRatio, Box, Grid } from "@chakra-ui/react";
-import { initialize, setStartingDiscs } from "../redux/slices";
+import { boardActions } from "../redux";
 import Space from "./Space";
 
 const Board = () => {
   const dispatch = useDispatch();
-  const { length, spaces } = useSelector(state => state.board);
+  const { spaces, length } = useSelector(state => state.board);
   useEffect(() => {
-    dispatch(initialize());
-    dispatch(setStartingDiscs());
+    dispatch(boardActions.initialize());
+    dispatch(boardActions.setStartingDiscs());
   }, []);
   return (
     <AspectRatio ratio={1} minH="300px" minW="300px">
