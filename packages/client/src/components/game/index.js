@@ -1,8 +1,8 @@
 import React from "react";
 import { VStack, Center } from "@chakra-ui/react";
 // import GameHeader from "./GameHeader";
-import GameFooter from "./GameFooter";
-import Board from "./Board";
+import Footer from "./Footer";
+import Board from "./board";
 
 const Game = () => {
   return (
@@ -10,7 +10,7 @@ const Game = () => {
       <VStack spacing={3}>
         {/* <GameHeader /> */}
         <Board />
-        <GameFooter />
+        <Footer />
       </VStack>
     </Center>
   );

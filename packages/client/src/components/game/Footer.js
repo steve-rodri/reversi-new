@@ -1,6 +1,6 @@
 import React from "react";
 import { HStack } from "@chakra-ui/react";
-import { RulesModalButton, DescriptionModalButton } from "./buttons";
+import { RulesModalButton, DescriptionModalButton } from "./ModalButtons";
 
 const GameFooter = () => {
   return (

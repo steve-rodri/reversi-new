@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { AspectRatio, Box, Grid } from "@chakra-ui/react";
-import { boardActions } from "../redux";
+import { boardActions } from "../../../redux";
 import Space from "./Space";
 
 const Board = () => {

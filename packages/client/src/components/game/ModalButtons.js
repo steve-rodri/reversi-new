@@ -1,8 +1,7 @@
 import React from "react";
 import { Button, useDisclosure } from "@chakra-ui/react";
-import Modal from "./Modal";
-import GameRules from "./GameRules";
-import GameDescription from "./GameDescription";
+import { GameRules, GameDescription } from "../modals";
+import Modal from "../Modal";
 
 export const RulesModalButton = () => {
   const { onOpen, ...modalProps } = useDisclosure();

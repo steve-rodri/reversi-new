@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { useDispatch, useSelector } from "react-redux";
 import { Center } from "@chakra-ui/react";
-import { selectSpace } from "../redux";
+import { selectSpace } from "../../../redux";
 import Disc from "./Disc";
 
 const Space = ({ value, coordinate }) => {

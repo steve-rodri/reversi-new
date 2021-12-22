@@ -1,7 +1,7 @@
 import React from "react";
 import { VStack, Text } from "@chakra-ui/react";
 
-const GameRules = () => {
+export const GameRules = () => {
   <VStack as="ul">
     <Text as="li">Black always moves first.</Text>
     <Text as="li">

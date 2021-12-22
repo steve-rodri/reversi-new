@@ -1,7 +1,7 @@
 import React from "react";
 import { Grid } from "@chakra-ui/react";
 import Header from "./Header";
-import Game from "./Game";
+import Game from "./game";
 
 const App = () => {
   return (
