@@ -10,12 +10,12 @@ import {
   ModalCloseButton,
 } from "@chakra-ui/react";
 
-const Modal = ({ header, children, footer }) => {
+const Modal = ({ header, children, footer, hideCloseButton, ...rest }) => {
   return (
-    <ChakraModal>
+    <ChakraModal {...rest}>
       <ModalOverlay />
       <ModalContent>
-        <ModalCloseButton />
+        {!hideCloseButton && <ModalCloseButton />}
         <ModalHeader>{header}</ModalHeader>
         <ModalBody>{children}</ModalBody>
         <ModalFooter>{footer}</ModalFooter>
@@ -31,6 +31,7 @@ Modal.propTypes = {
     PropTypes.element,
   ]),
   footer: PropTypes.any,
+  hideCloseButton: PropTypes.bool,
 };
 
 export default Modal;
