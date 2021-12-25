@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Formik, Form } from "formik";
+import { Formik, Form, useField } from "formik";
 import * as Yup from "yup";
 import { playerActions } from "../../redux";
 import { useDispatch } from "react-redux";
@@ -22,7 +22,7 @@ export const EnterPlayerInfo = ({ num = 1, setModalView }) => {
   const validationSchema = Yup.object({
     name: Yup.string(),
   });
-  const onSubmit = ({ values }) => {
+  const onSubmit = values => {
     dispatch(playerActions.addPlayer({ num, ...values }));
     setModalView("choose-color");
   };
@@ -34,11 +34,7 @@ export const EnterPlayerInfo = ({ num = 1, setModalView }) => {
       <Formik {...formikProps}>
         <Form>
           <VStack spacing={10}>
-            <FormControl>
-              <FormLabel>Name</FormLabel>
-              <Input type="text" />
-              <FormErrorMessage />
-            </FormControl>
+            <NameField />
             <Center>
               <Button type="submit">Submit</Button>
             </Center>
@@ -46,6 +42,19 @@ export const EnterPlayerInfo = ({ num = 1, setModalView }) => {
         </Form>
       </Formik>
     </VStack>
+  );
+};
+
+const NameField = () => {
+  const [field, meta] = useField("name");
+  return (
+    <FormControl>
+      <FormLabel>Name</FormLabel>
+      <Input {...field} type="text" />
+      {meta.touched && meta.error ? (
+        <FormErrorMessage>{meta.error}</FormErrorMessage>
+      ) : null}
+    </FormControl>
   );
 };
 
