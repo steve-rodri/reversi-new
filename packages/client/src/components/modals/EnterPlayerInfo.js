@@ -6,33 +6,43 @@ import { playerActions } from "../../redux";
 import { useDispatch } from "react-redux";
 import {
   VStack,
-  Input,
-  FormControl,
+  Center,
+  Button,
+  Divider,
   Heading,
+  FormControl,
   FormLabel,
   FormErrorMessage,
+  Input,
 } from "@chakra-ui/react";
 
-export const EnterPlayerInfo = ({ playerNum = 1 }) => {
+export const EnterPlayerInfo = ({ num = 1, setModalView }) => {
   const dispatch = useDispatch();
   const initialValues = { name: "" };
   const validationSchema = Yup.object({
     name: Yup.string(),
   });
   const onSubmit = ({ values }) => {
-    dispatch(playerActions.addPlayer({ num: playerNum, ...values }));
+    dispatch(playerActions.addPlayer({ num, ...values }));
+    setModalView("choose-color");
   };
   const formikProps = { initialValues, validationSchema, onSubmit };
   return (
-    <VStack>
-      <Heading>{`Enter Player ${playerNum} Info`}</Heading>
+    <VStack spacing={8}>
+      <Heading as="h3" fontSize="2xl">{`Enter Player ${num}`}</Heading>
+      <Divider />
       <Formik {...formikProps}>
         <Form>
-          <FormControl>
-            <FormLabel>Name</FormLabel>
-            <Input type="text" />
-            <FormErrorMessage />
-          </FormControl>
+          <VStack spacing={10}>
+            <FormControl>
+              <FormLabel>Name</FormLabel>
+              <Input type="text" />
+              <FormErrorMessage />
+            </FormControl>
+            <Center>
+              <Button type="submit">Submit</Button>
+            </Center>
+          </VStack>
         </Form>
       </Formik>
     </VStack>
@@ -40,5 +50,6 @@ export const EnterPlayerInfo = ({ playerNum = 1 }) => {
 };
 
 EnterPlayerInfo.propTypes = {
-  playerNum: PropTypes.number,
+  num: PropTypes.number,
+  setModalView: PropTypes.func,
 };
