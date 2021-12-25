@@ -1,12 +1,15 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { VStack, Heading, Button, Divider, Grid } from "@chakra-ui/react";
+import { useDispatch } from "react-redux";
+import { playerActions } from "../../redux";
 
-export const ChooseGameType = () => {
+export const ChooseGameType = props => {
   return (
     <Grid autoFlow="column" justifyContent="space-evenly">
-      <Online />
+      <Online {...props} />
       <Divider orientation="vertical" />
-      <Local />
+      <Local {...props} />
     </Grid>
   );
 };
@@ -14,7 +17,7 @@ export const ChooseGameType = () => {
 const Online = () => {
   return (
     <VStack spacing={3} py={6}>
-      <Heading as="h3" fontSize="2xl">
+      <Heading as="h3" fontSize="2xl" mb={4}>
         Online
       </Heading>
       <Button>vs. Random</Button>
@@ -23,14 +26,31 @@ const Online = () => {
   );
 };
 
-const Local = () => {
+const Local = ({ setModalView, setGameType }) => {
+  const dispatch = useDispatch();
+  const onOnePlayerPress = () => {
+    setGameType("one-player-local");
+    dispatch(playerActions.addPlayer({ num: 1, name: "Player" }));
+    dispatch(playerActions.addPlayer({ num: 2, name: "CPU" }));
+    setModalView("choose-color");
+  };
+
+  const onTwoPlayerPress = () => {
+    setGameType("two-player-local");
+    setModalView("enter-player-1");
+  };
   return (
     <VStack spacing={3} py={6}>
-      <Heading as="h3" fontSize="2xl">
+      <Heading as="h3" fontSize="2xl" mb={4}>
         Local
       </Heading>
-      <Button onClick={}>One Player</Button>
-      <Button>Two Player</Button>
+      <Button onClick={onOnePlayerPress}>One Player</Button>
+      <Button onClick={onTwoPlayerPress}>Two Player</Button>
     </VStack>
   );
+};
+
+Local.propTypes = {
+  setModalView: PropTypes.func,
+  setGameType: PropTypes.func,
 };
