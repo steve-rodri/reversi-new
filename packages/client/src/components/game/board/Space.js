@@ -15,7 +15,7 @@ const Space = ({ value, coordinate }) => {
   };
   return (
     <Center onClick={onSelect} bgColor="board.default" borderRadius={2}>
-      {value !== "x" ? <Disc value={value} /> : null}
+      {value ? <Disc value={value} /> : null}
     </Center>
   );
 };
