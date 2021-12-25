@@ -55,7 +55,7 @@ const BlackPiece = ({ onSelect }) => {
       boxSize={50}
       onClick={() => onSelect("black")}
     >
-      <Disc value={0} />
+      <Disc value="b" />
     </Center>
   );
 };
@@ -68,7 +68,7 @@ const WhitePiece = ({ onSelect }) => {
       boxSize={50}
       onClick={() => onSelect("white")}
     >
-      <Disc value={1} />
+      <Disc value="w" />
     </Center>
   );
 };
