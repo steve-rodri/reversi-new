@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 export const progressionSlice = createSlice({
   name: "progression",
   initialState: {
-    turn: 0,
+    turn: "black",
     gamesPlayed: 0,
     gameOver: false,
   },
@@ -17,11 +17,11 @@ export const progressionSlice = createSlice({
       return state;
     },
     switchTurn: state => {
-      state.turn = state.turn ? 0 : 1;
+      state.turn = state.turn === "black" ? "white" : "black";
       return state;
     },
     resetTurn: state => {
-      state.turn = 0;
+      state.turn = "black";
       return state;
     },
     endGame: state => {
@@ -29,7 +29,7 @@ export const progressionSlice = createSlice({
       return state;
     },
     newGame: state => {
-      state.turn = 0;
+      state.turn = "black";
       state.gameOver = false;
       return state;
     },

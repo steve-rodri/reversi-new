@@ -1,11 +1,16 @@
-import { findOpponentDiscs, checkForMove, cpuChoice } from "../utils";
+import {
+  findOpponentDiscs,
+  checkForMove,
+  cpuChoice,
+  turnValue,
+} from "../utils";
 import { boardActions, progressionActions } from "./slices";
 
 export const selectSpace = (coordinate, turn) => (dispatch, getState) => {
   const { board } = getState();
   const { x, y } = coordinate;
-  // if the selection is not a blank space, exit
-  if (board.spaces[y][x] !== "x") return;
+  // if the selected space is occupied by an existing piece, exit
+  if (board.spaces[y][x]) return;
   // find all opponent discs that the player can flip
   const opponentDiscs = findOpponentDiscs(coordinate, turn, board.spaces);
   // if player cannot overtake any discs, exit
@@ -13,12 +18,12 @@ export const selectSpace = (coordinate, turn) => (dispatch, getState) => {
   // set selected space to current player's disc
   dispatch(boardActions.updateSpace({ coordinate, turn }));
   // update board disc count
-  dispatch(boardActions.updateDiscCount({ coordinate, turn }));
+  dispatch(boardActions.updateDiscCount());
 
   // flip all opponent discs
   opponentDiscs.forEach(oppCoord => {
     dispatch(boardActions.updateSpace({ coordinate: oppCoord, turn }));
-    dispatch(boardActions.updateDiscCount({ coordinate: oppCoord, turn }));
+    dispatch(boardActions.updateDiscCount());
   });
 
   // switch turn
@@ -35,6 +40,7 @@ const opponentMove = cycleBackToActivePlayer => (dispatch, getState) => {
   if (!move) {
     // switch turn to see if the player can make a move
     dispatch(progressionActions.switchTurn());
+    // recursively call opponentMove w/ boolean base case
     if (!cycleBackToActivePlayer) dispatch(opponentMove(true));
     // if both players cannot make a move the game is over
     if (cycleBackToActivePlayer) dispatch(progressionActions.endGame());
@@ -44,6 +50,9 @@ const opponentMove = cycleBackToActivePlayer => (dispatch, getState) => {
   if (cpu && progression.turn === cpu.color) {
     // CPU makes choice and dispatches a space selection action
     const coordinate = cpuChoice(state);
-    setTimeout(() => dispatch(selectSpace(coordinate, progression.turn)), 4000);
+    setTimeout(
+      () => dispatch(selectSpace(coordinate, turnValue(progression.turn))),
+      4000
+    );
   }
 };

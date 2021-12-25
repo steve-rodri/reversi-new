@@ -11,7 +11,7 @@ const initialState = {
 
 const initialize = state => {
   const { length } = state;
-  const row = Array.from({ length }).map(() => "x");
+  const row = Array.from({ length }).map(() => "");
   state.spaces = Array.from({ length }).map(() => row);
   state.gameEnded = false;
   return state;
@@ -19,10 +19,10 @@ const initialize = state => {
 
 const setStartingDiscs = state => {
   const { length } = state;
-  state.spaces[length / 2 - 1][length / 2 - 1] = 1;
-  state.spaces[length / 2 - 1][length / 2] = 0;
-  state.spaces[length / 2][length / 2 - 1] = 0;
-  state.spaces[length / 2][length / 2] = 1;
+  state.spaces[length / 2 - 1][length / 2 - 1] = "w";
+  state.spaces[length / 2 - 1][length / 2] = "b";
+  state.spaces[length / 2][length / 2 - 1] = "b";
+  state.spaces[length / 2][length / 2] = "w";
   return state;
 };
 
@@ -38,8 +38,8 @@ const updateDiscCount = state => {
   let white = 0;
   state.spaces.forEach(row => {
     row.forEach(space => {
-      if (space === 0) black++;
-      if (space === 1) white++;
+      if (space === "b") black++;
+      if (space === "w") white++;
     });
   });
   state.discs = { black, white };
