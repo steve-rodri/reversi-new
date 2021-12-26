@@ -28,7 +28,7 @@ const CPUMove = possibleMoves => (dispatch, getState) => {
   const { progression } = getState();
   const coordinate = cpuChoice(possibleMoves);
   const turn = firstLetter(progression.turn);
-  setTimeout(() => dispatch(handleSpaceSelect(coordinate, turn)), 4000);
+  setTimeout(() => dispatch(handleSpaceSelect(coordinate, turn)), 2000);
 };
 
 export default opponentMove;
