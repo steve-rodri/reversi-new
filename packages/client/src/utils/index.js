@@ -4,4 +4,4 @@ export * from "./findOpponentDiscs";
 export * from "./findWinner";
 export * from "./opponent";
 export * from "./shuffle";
-export * from "./turnValue";
+export * from "./turnConversion";
