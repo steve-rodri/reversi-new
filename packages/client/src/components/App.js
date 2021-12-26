@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { Grid, useDisclosure } from "@chakra-ui/react";
 import { ChooseGameType, ChooseColor, EnterPlayerInfo } from "./modals";
 import Modal from "./Modal";
@@ -7,12 +7,6 @@ import Game from "./game";
 
 const App = () => {
   const { onOpen: openModal, ...modalProps } = useDisclosure();
-  const [gameType, setGameType] = useState();
-  const modalContentProps = {
-    gameType,
-    setGameType,
-    closeModal: modalProps.onClose,
-  };
   useEffect(() => {
     openModal();
   }, []);

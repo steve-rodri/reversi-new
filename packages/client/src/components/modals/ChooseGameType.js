@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { VStack, Heading, Button, Divider, Grid } from "@chakra-ui/react";
 import { useDispatch } from "react-redux";
-import { playerActions } from "../../redux";
+import { playerActions, progressionActions } from "../../redux";
 
 export const ChooseGameType = props => {
   return (
@@ -26,17 +26,16 @@ const Online = () => {
   );
 };
 
-const Local = ({ setModalView, setGameType }) => {
+const Local = ({ setModalView }) => {
   const dispatch = useDispatch();
   const onOnePlayerPress = () => {
-    setGameType("one-player-local");
+    dispatch(progressionActions.setGameType("one-player-local"));
     dispatch(playerActions.addPlayer({ num: 1, name: "Player" }));
     dispatch(playerActions.addPlayer({ num: 2, name: "CPU" }));
     setModalView("choose-color");
   };
-
   const onTwoPlayerPress = () => {
-    setGameType("two-player-local");
+    dispatch(progressionActions.setGameType("two-player-local"));
     setModalView("enter-player-1");
   };
   return (

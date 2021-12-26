@@ -6,6 +6,7 @@ export const progressionSlice = createSlice({
     turn: "black",
     gamesPlayed: 0,
     gameOver: false,
+    gameType: "",
   },
   reducers: {
     incrementGamesPlayed: state => {
@@ -33,10 +34,13 @@ export const progressionSlice = createSlice({
       state.gameOver = false;
       return state;
     },
+    setGameType: (state, action) => {
+      state.gameType = action.payload;
+      return state;
+    },
   },
 });
 
 export const progressionReducer = progressionSlice.reducer;
 export const progressionActions = progressionSlice.actions;
-
 export default progressionSlice;
