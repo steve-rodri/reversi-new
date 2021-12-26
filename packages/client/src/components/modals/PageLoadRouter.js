@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { ChooseGameType, ChooseColor, EnterPlayerInfo } from "./modals";
+import { ChooseGameType, ChooseColor, EnterPlayerInfo } from ".";
 
-export const PageLoadModalRouter = props => {
+export const PageLoadRouter = props => {
   const [modalView, setModalView] = useState("choose-game-type");
   props = { ...props, setModalView };
   switch (modalView) {
@@ -16,4 +16,4 @@ export const PageLoadModalRouter = props => {
   }
 };
 
-export default PageLoadModalRouter;
+export default PageLoadRouter;
