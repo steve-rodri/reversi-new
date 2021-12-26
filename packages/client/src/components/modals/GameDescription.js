@@ -1,7 +1,7 @@
 import React from "react";
 import { VStack, Text, Heading } from "@chakra-ui/react";
 
-const GameDescription = () => {
+export const GameDescription = () => {
   return (
     <VStack>
       <Text>

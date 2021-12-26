@@ -1,14 +1,25 @@
-import React from "react";
-import { Grid } from "@chakra-ui/react";
+import React, { useEffect } from "react";
+import { Grid, useDisclosure } from "@chakra-ui/react";
+import PageLoadModalRouter from "./PageLoadModalRouter";
+import Modal from "./Modal";
 import Header from "./Header";
-import Game from "./Game";
+import Game from "./game";
 
-const App = () => {
+export const App = () => {
+  const { onOpen: openModal, ...modalProps } = useDisclosure();
+  useEffect(() => {
+    openModal();
+  }, []);
   return (
-    <Grid h="100vh" templateRows="auto 1fr">
-      <Header />
-      <Game />
-    </Grid>
+    <>
+      <Grid h="100vh" templateRows="auto 1fr">
+        <Header />
+        <Game />
+      </Grid>
+      <Modal {...modalProps} isCentered hideCloseButton>
+        <PageLoadModalRouter closeModal={modalProps.onClose} />
+      </Modal>
+    </>
   );
 };
 

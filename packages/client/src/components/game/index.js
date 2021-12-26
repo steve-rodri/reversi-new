@@ -1,8 +1,8 @@
 import React from "react";
 import { VStack, Center } from "@chakra-ui/react";
 // import GameHeader from "./GameHeader";
-import GameFooter from "./GameFooter";
-import Board from "./Board";
+import GameFooter from "./footer";
+import Board from "./board";
 
 const Game = () => {
   return (

@@ -6,11 +6,12 @@ export const playerSlice = createSlice({
   reducers: {
     addPlayer: (state, { payload }) => state.concat(payload),
     removePlayer: (state, { payload }) =>
-      state.filter(player => player.number === payload.number),
+      state.filter(player => player.num === payload.num),
     updatePlayer: (state, { payload }) =>
       state.map(player =>
-        player.number === payload.number ? payload : player
+        player.num === payload.num ? { ...player, ...payload } : player
       ),
+    clear: () => [],
   },
 });
 

@@ -12,10 +12,10 @@ function checkDown(coordinate, activePlayer, spaces) {
   let { x, y } = coordinate;
   y++;
   while (y < spaces.length) {
-    const space = spaces[y][x];
-    if (space === "x") return [];
-    if (space === activePlayer) return opponentDiscs;
-    if (space === opponent) opponentDiscs.push({ x, y });
+    const spaceValue = spaces[y][x];
+    if (!spaceValue) return [];
+    if (spaceValue === activePlayer) return opponentDiscs;
+    if (spaceValue === opponent) opponentDiscs.push({ x, y });
     y++;
   }
   return [];
@@ -27,10 +27,10 @@ function checkUp(coordinate, activePlayer, spaces) {
   let { x, y } = coordinate;
   y--;
   while (y >= 0) {
-    const space = spaces[y][x];
-    if (space === "x") return [];
-    if (space === activePlayer) return opponentDiscs;
-    if (space === opponent) opponentDiscs.push({ x, y });
+    const spaceValue = spaces[y][x];
+    if (!spaceValue) return [];
+    if (spaceValue === activePlayer) return opponentDiscs;
+    if (spaceValue === opponent) opponentDiscs.push({ x, y });
     y--;
   }
   return [];

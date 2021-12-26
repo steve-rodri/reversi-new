@@ -15,10 +15,10 @@ function checkUpRight(coordinate, activePlayer, spaces) {
   x++;
   y--;
   while (x < spaces.length && y >= 0) {
-    const space = spaces[y][x];
-    if (space === "x") return [];
-    if (space === activePlayer) return opponentDiscs;
-    if (space === opponent) opponentDiscs.push({ x, y });
+    const spaceValue = spaces[y][x];
+    if (!spaceValue) return [];
+    if (spaceValue === activePlayer) return opponentDiscs;
+    if (spaceValue === opponent) opponentDiscs.push({ x, y });
     x++;
     y--;
   }
@@ -32,10 +32,10 @@ function checkDownLeft(coordinate, activePlayer, spaces) {
   x--;
   y++;
   while (x >= 0 && y < spaces.length) {
-    const space = spaces[y][x];
-    if (space === "x") return [];
-    if (space === activePlayer) return opponentDiscs;
-    if (space === opponent) opponentDiscs.push({ x, y });
+    const spaceValue = spaces[y][x];
+    if (!spaceValue) return [];
+    if (spaceValue === activePlayer) return opponentDiscs;
+    if (spaceValue === opponent) opponentDiscs.push({ x, y });
     x--;
     y++;
   }
@@ -49,10 +49,10 @@ function checkUpLeft(coordinate, activePlayer, spaces) {
   x--;
   y--;
   while (x >= 0 && y >= 0) {
-    const space = spaces[y][x];
-    if (space === "x") return [];
-    if (space === activePlayer) return opponentDiscs;
-    if (space === opponent) opponentDiscs.push({ x, y });
+    const spaceValue = spaces[y][x];
+    if (!spaceValue) return [];
+    if (spaceValue === activePlayer) return opponentDiscs;
+    if (spaceValue === opponent) opponentDiscs.push({ x, y });
     x--;
     y--;
   }
@@ -66,10 +66,10 @@ function checkDownRight(coordinate, activePlayer, spaces) {
   x++;
   y++;
   while (x < spaces.length && y < spaces.length) {
-    const space = spaces[y][x];
-    if (space === "x") return [];
-    if (space === activePlayer) return opponentDiscs;
-    if (space === opponent) opponentDiscs.push({ x, y });
+    const spaceValue = spaces[y][x];
+    if (!spaceValue) return [];
+    if (spaceValue === activePlayer) return opponentDiscs;
+    if (spaceValue === opponent) opponentDiscs.push({ x, y });
     x++;
     y++;
   }
