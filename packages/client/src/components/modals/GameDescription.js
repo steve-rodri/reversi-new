@@ -3,7 +3,7 @@ import { VStack, Text, Heading } from "@chakra-ui/react";
 
 export const GameDescription = () => {
   return (
-    <VStack>
+    <VStack spacing={4}>
       <Text>
         <strong>Reversi</strong> (<span>or Othello</span>) is a strategy board
         game for two players, played on an 8×8 uncheckered board. There are
@@ -12,7 +12,9 @@ export const GameDescription = () => {
         board with their assigned color facing up.
       </Text>
       <VStack>
-        <Heading>Objective</Heading>
+        <Heading as="h3" mt={4} fontSize="lg" alignSelf="start">
+          Objective
+        </Heading>
         <Text>
           The player with the most pieces of their kind on the board after all
           valid moves have been completed wins the game. In order to achieve

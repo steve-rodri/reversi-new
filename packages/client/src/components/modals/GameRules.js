@@ -1,8 +1,8 @@
 import React from "react";
 import { VStack, Text } from "@chakra-ui/react";
 
-export const GameRules = () => {
-  <VStack as="ul">
+export const GameRules = () => (
+  <VStack as="ul" align="start">
     <Text as="li">Black always moves first.</Text>
     <Text as="li">
       If on your turn you can not outflank and flip at least one opposing disc,
@@ -33,7 +33,7 @@ export const GameRules = () => {
       Discs are counted and the player with the majority of his or her color
       discs on the board is the winner.
     </Text>
-  </VStack>;
-};
+  </VStack>
+);
 
 export default GameRules;
