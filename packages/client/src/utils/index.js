@@ -1,5 +1,5 @@
-export * from "./cpuChoice";
 export * from "./findOpponentDiscs";
+export * from "./cpuChoice";
 export * from "./findWinner";
 export * from "./getCPU";
 export * from "./getCurrentPlayer";
