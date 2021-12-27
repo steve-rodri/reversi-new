@@ -1,4 +1,4 @@
-import { getPossibleMoves, cpuChoice, firstLetter } from "../../utils";
+import { getPossibleMoves, cpuChoice } from "../../utils";
 import { progressionActions } from "../slices";
 import { handleSpaceSelect } from "./handleSpaceSelect";
 /*eslint no-debugger: "warn"*/
@@ -11,8 +11,8 @@ import { handleSpaceSelect } from "./handleSpaceSelect";
 
 export const opponentMove = hasBeenChecked => (dispatch, getState) => {
   const state = getState();
-  const possibleMoves = getPossibleMoves(state);
-  if (possibleMoves.length === 0) {
+  const moves = getPossibleMoves(state);
+  if (moves.length === 0) {
     dispatch(progressionActions.switchTurn());
     if (hasBeenChecked) dispatch(progressionActions.endGame());
     else dispatch(opponentMove(true));
@@ -21,14 +21,12 @@ export const opponentMove = hasBeenChecked => (dispatch, getState) => {
   // if there is a cpu and it is the CPU's turn to move
   const { players, progression } = state;
   const cpu = players.find(player => player.name === "CPU");
-  if (cpu && progression.turn === cpu.color) dispatch(CPUMove(possibleMoves));
-};
-
-const CPUMove = possibleMoves => (dispatch, getState) => {
-  const { progression } = getState();
-  const coordinate = cpuChoice(possibleMoves);
-  const turn = firstLetter(progression.turn);
-  setTimeout(() => dispatch(handleSpaceSelect(coordinate, turn)), 2000);
+  if (!cpu && progression.turn !== cpu.color) return;
+  const coordinate = cpuChoice(moves);
+  setTimeout(
+    () => dispatch(handleSpaceSelect({ coordinate, player: cpu })),
+    2000
+  );
 };
 
 export default opponentMove;

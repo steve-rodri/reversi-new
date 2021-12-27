@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { useDisclosure } from "@chakra-ui/react";
 import { GameOver, PageLoadRouter } from "../modals";
 import { VStack, Center } from "@chakra-ui/react";
-// import GameHeader from "./GameHeader";
+import GameHeader from "./header";
 import GameFooter from "./footer";
 import Board from "./board";
 import Modal from "../Modal";
@@ -22,12 +22,17 @@ const Game = () => {
     <>
       <Center>
         <VStack spacing={3}>
-          {/* <GameHeader /> */}
+          <GameHeader />
           <Board />
           <GameFooter />
         </VStack>
       </Center>
-      <Modal {...pageLoadModalProps} isCentered hideCloseButton>
+      <Modal
+        {...pageLoadModalProps}
+        isCentered
+        hideCloseButton
+        closeOnOverlayClick={false}
+      >
         <PageLoadRouter closeModal={pageLoadModalProps.onClose} />
       </Modal>
       <Modal {...gameOverModalProps} isCentered>

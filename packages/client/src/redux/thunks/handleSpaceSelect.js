@@ -1,9 +1,12 @@
-import { findOpponentDiscs } from "../../utils";
+import { findOpponentDiscs, firstLetter } from "../../utils";
 import { boardActions, progressionActions } from "../slices";
 import opponentMove from "./opponentMove";
 
-export const handleSpaceSelect = (coordinate, turn) => (dispatch, getState) => {
-  const { board } = getState();
+export const handleSpaceSelect = params => (dispatch, getState) => {
+  const { coordinate, player } = params;
+  const { board, progression } = getState();
+  if (player.color !== progression.turn) return;
+  const turn = firstLetter(progression.turn);
   if (board.spaces[coordinate.y][coordinate.x]) return;
   const opponentDiscs = findOpponentDiscs(coordinate, turn, board.spaces);
   if (!opponentDiscs) return;

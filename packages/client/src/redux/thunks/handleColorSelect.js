@@ -14,7 +14,9 @@ export const handleColorSelect = params => (dispatch, getState) => {
 const handleOnePlayerLocal = params => (dispatch, getState) => {
   const { color, closeModal } = params;
   const state = getState();
-  const cpu = getCPU(state.players);
+  const currentPlayer = getCurrentPlayer(state);
+  dispatch(playerActions.updatePlayer({ ...currentPlayer, color }));
+  const cpu = getCPU(state);
   const cpuColor = color === "black" ? "white" : "black";
   dispatch(playerActions.updatePlayer({ ...cpu, color: cpuColor }));
   closeModal();
@@ -23,8 +25,8 @@ const handleOnePlayerLocal = params => (dispatch, getState) => {
 
 const handleTwoPlayerLocal = params => (dispatch, getState) => {
   const { color, closeModal, setModalView } = params;
-  const { progression, players } = getState();
-  const currentPlayer = getCurrentPlayer(progression.gameType, players);
+  const state = getState();
+  const currentPlayer = getCurrentPlayer(state);
   dispatch(playerActions.updatePlayer({ ...currentPlayer, color }));
   if (currentPlayer.num === 1) setModalView("enter-player-2");
   if (currentPlayer.num === 2) closeModal();

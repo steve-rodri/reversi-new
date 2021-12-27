@@ -1,9 +1,9 @@
-export const getCurrentPlayer = (gameType, players) => {
+export const getCurrentPlayer = ({ players, progression }) => {
   if (!players.length) return;
   if (players.length === 1) return players[0];
-  if (gameType === "one-player-local")
+  if (progression.gameType === "one-player-local")
     return players.find(player => player.name === "Player");
-  if (gameType === "two-player-local") {
+  if (progression.gameType === "two-player-local") {
     return players.find(player => player.color === undefined);
   }
 };
