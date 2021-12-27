@@ -13,8 +13,10 @@ export const handleColorSelect = params => (dispatch, getState) => {
 
 const handleOnePlayerLocal = params => (dispatch, getState) => {
   const { color, closeModal } = params;
-  const state = getState();
-  const cpu = getCPU(state.players);
+  const { progression, players } = getState();
+  const currentPlayer = getCurrentPlayer(progression.gameType, players);
+  dispatch(playerActions.updatePlayer({ ...currentPlayer, color }));
+  const cpu = getCPU(players);
   const cpuColor = color === "black" ? "white" : "black";
   dispatch(playerActions.updatePlayer({ ...cpu, color: cpuColor }));
   closeModal();
