@@ -3,15 +3,16 @@ import PropTypes from "prop-types";
 import { useDispatch, useSelector } from "react-redux";
 import { Center } from "@chakra-ui/react";
 import { handleSpaceSelect } from "../../../redux";
-import { firstLetter, fullWord } from "../../../utils";
+import { fullWord, getCurrentPlayer } from "../../../utils";
 import Disc from "./Disc";
 
 const Space = ({ value, coordinate }) => {
   const dispatch = useDispatch();
-  const turn = useSelector(({ progression }) => firstLetter(progression.turn));
+  const state = useSelector(state => state);
   const onSelect = e => {
     e.stopPropagation();
-    dispatch(handleSpaceSelect(coordinate, turn));
+    const player = getCurrentPlayer(state);
+    dispatch(handleSpaceSelect({ coordinate, player }));
   };
   return (
     <Center onClick={onSelect} bgColor="board.default" borderRadius={2}>
