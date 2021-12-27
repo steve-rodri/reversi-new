@@ -27,7 +27,12 @@ const Game = () => {
           <GameFooter />
         </VStack>
       </Center>
-      <Modal {...pageLoadModalProps} isCentered hideCloseButton>
+      <Modal
+        {...pageLoadModalProps}
+        isCentered
+        hideCloseButton
+        closeOnOverlayClick={false}
+      >
         <PageLoadRouter closeModal={pageLoadModalProps.onClose} />
       </Modal>
       <Modal {...gameOverModalProps} isCentered>
