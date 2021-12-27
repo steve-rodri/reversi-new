@@ -15,8 +15,8 @@ import { findWinner } from "../../utils";
 
 export const GameOver = ({ closeModal }) => {
   const dispatch = useDispatch();
-  const { discs } = useSelector(state => state.board);
-  const winner = findWinner(discs, true);
+  const state = useSelector(state => state);
+  const winner = findWinner(state);
   const onNewGame = () => {
     closeModal();
     setTimeout(() => dispatch(startNewGame()), 200);
@@ -24,21 +24,21 @@ export const GameOver = ({ closeModal }) => {
   return (
     <VStack spacing={8}>
       <Center>
-        <Heading>{winner}</Heading>
+        <Heading>{`${winner.name} Wins!`}</Heading>
       </Center>
       <Grid autoFlow="column" gap={4}>
         <VStack>
           <Heading as="h3" fontSize="xl">
             Black
           </Heading>
-          <Text fontSize="lg">{discs.black}</Text>
+          <Text fontSize="lg">{state.board.discs.black}</Text>
         </VStack>
         <Divider />
         <VStack>
           <Heading as="h3" fontSize="xl">
             White
           </Heading>
-          <Text fontSize="lg">{discs.white}</Text>
+          <Text fontSize="lg">{state.board.discs.white}</Text>
         </VStack>
       </Grid>
 

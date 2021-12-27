@@ -30,8 +30,8 @@ const Local = ({ setModalView }) => {
   const dispatch = useDispatch();
   const onOnePlayerPress = () => {
     dispatch(progressionActions.setGameType("one-player-local"));
-    dispatch(playerActions.addPlayer({ num: 1, name: "Player" }));
-    dispatch(playerActions.addPlayer({ num: 2, name: "CPU" }));
+    dispatch(playerActions.addPlayer({ num: 1, name: "Player", gamesWon: 0 }));
+    dispatch(playerActions.addPlayer({ num: 2, name: "CPU", gamesWon: 0 }));
     setModalView("choose-color");
   };
   const onTwoPlayerPress = () => {

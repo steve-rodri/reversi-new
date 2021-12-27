@@ -3,11 +3,19 @@ import { boardActions, progressionActions } from "../slices";
 import opponentMove from "./opponentMove";
 
 export const handleSpaceSelect = params => (dispatch, getState) => {
-  const { coordinate, player } = params;
-  const { board, progression } = getState();
-  if (player.color !== progression.turn) return;
-  const turn = firstLetter(progression.turn);
+  const { coordinate, isCPU } = params;
+  const { board, progression, players } = getState();
+  // if space is occupied, exit
   if (board.spaces[coordinate.y][coordinate.x]) return;
+
+  // if it is not the players turn to play, exit
+  if (progression.gameType === "one-player-local") {
+    const player = isCPU ? players[1] : players[0];
+    if (player.color !== progression.turn) return;
+  }
+
+  // if there are no opponentDiscs to flip, exit
+  const turn = firstLetter(progression.turn);
   const opponentDiscs = findOpponentDiscs(coordinate, turn, board.spaces);
   if (!opponentDiscs) return;
 

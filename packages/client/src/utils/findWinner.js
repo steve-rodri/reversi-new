@@ -1,16 +1,11 @@
-export function findWinner(pieces, text) {
-  const { black, white } = pieces;
-
-  if (black > white) {
-    if (text) return "Black Wins!";
-    return 0;
-  } else if (white > black) {
-    if (text) return "White Wins!";
-    return 1;
-  } else if (black === white) {
-    if (text) return "Tie!";
-    return null;
-  }
+export function findWinner(state) {
+  const { players, board } = state;
+  const { black, white } = board.discs;
+  return players.find(player => {
+    if (black > white) return player.color === "black";
+    if (black < white) return player.color === "white";
+    if (black === white) return undefined;
+  });
 }
 
 export default findWinner;

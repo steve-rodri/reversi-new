@@ -23,7 +23,7 @@ export const EnterPlayerInfo = ({ num = 1, setModalView }) => {
     name: Yup.string(),
   });
   const onSubmit = values => {
-    dispatch(playerActions.addPlayer({ num, ...values }));
+    dispatch(playerActions.addPlayer({ ...values, num, gamesWon: 0 }));
     setModalView("choose-color");
   };
   const formikProps = { initialValues, validationSchema, onSubmit };

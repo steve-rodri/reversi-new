@@ -1,4 +1,3 @@
-import { getCPU, getCurrentPlayer } from "../../utils";
 import { playerActions } from "../slices";
 import opponentMove from "./opponentMove";
 
@@ -11,12 +10,12 @@ export const handleColorSelect = params => (dispatch, getState) => {
   if (gameType === "two-player-local") dispatch(handleTwoPlayerLocal(params));
 };
 
+//
+
 const handleOnePlayerLocal = params => (dispatch, getState) => {
   const { color, closeModal } = params;
-  const state = getState();
-  const currentPlayer = getCurrentPlayer(state);
-  dispatch(playerActions.updatePlayer({ ...currentPlayer, color }));
-  const cpu = getCPU(state);
+  const [player, cpu] = getState().players;
+  dispatch(playerActions.updatePlayer({ ...player, color }));
   const cpuColor = color === "black" ? "white" : "black";
   dispatch(playerActions.updatePlayer({ ...cpu, color: cpuColor }));
   closeModal();
@@ -25,9 +24,13 @@ const handleOnePlayerLocal = params => (dispatch, getState) => {
 
 const handleTwoPlayerLocal = params => (dispatch, getState) => {
   const { color, closeModal, setModalView } = params;
-  const state = getState();
-  const currentPlayer = getCurrentPlayer(state);
-  dispatch(playerActions.updatePlayer({ ...currentPlayer, color }));
-  if (currentPlayer.num === 1) setModalView("enter-player-2");
-  if (currentPlayer.num === 2) closeModal();
+  const [one, two] = getState().players;
+  if (one && !two) {
+    dispatch(playerActions.updatePlayer({ ...one, color }));
+    setModalView("enter-player-2");
+  }
+  if (two) {
+    dispatch(playerActions.updatePlayer({ ...two, color }));
+    closeModal();
+  }
 };
