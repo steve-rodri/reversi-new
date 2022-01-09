@@ -4,12 +4,10 @@ import Game from "./game";
 
 export const App = () => {
   return (
-    <>
-      <Grid h="100vh" templateRows="auto 1fr">
-        <Header />
-        <Game />
-      </Grid>
-    </>
+    <Grid h="100vh" templateRows="auto 1fr">
+      <Header />
+      <Game />
+    </Grid>
   );
 };
 

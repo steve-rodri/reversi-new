@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { useSelector } from "react-redux";
 import { useDisclosure } from "@chakra-ui/react";
 import { GameOver, PageLoadRouter } from "../modals";
@@ -12,6 +12,8 @@ const Game = () => {
   const { gameOver } = useSelector(state => state.progression);
   const { onOpen: openGameOverModal, ...gameOverModalProps } = useDisclosure();
   const { onOpen: openPageLoadModal, ...pageLoadModalProps } = useDisclosure();
+  const [containerRef, dimensions] = useResizer();
+  const { height, width } = dimensions;
   useEffect(() => {
     openPageLoadModal();
   }, []);
@@ -20,10 +22,10 @@ const Game = () => {
   }, [gameOver]);
   return (
     <>
-      <Center>
+      <Center ref={containerRef}>
         <VStack spacing={3}>
           <GameHeader />
-          <Board />
+          <Board size={height > width ? width : height} />
           <GameFooter />
         </VStack>
       </Center>
@@ -40,6 +42,32 @@ const Game = () => {
       </Modal>
     </>
   );
+};
+
+const useResizer = () => {
+  const containerRef = useRef();
+  const [height, setHeight] = useState(window.innerHeight);
+  const [width, setWidth] = useState(window.innerWidth);
+  const setSize = () => {
+    const h = parseInt(
+      window
+        .getComputedStyle(containerRef.current)
+        .getPropertyValue("height")
+        .slice(0, -2)
+    );
+    setHeight(h);
+    const w = parseInt(
+      window
+        .getComputedStyle(containerRef.current)
+        .getPropertyValue("width")
+        .slice(0, -2)
+    );
+    setWidth(w);
+  };
+  useEffect(() => {
+    window.addEventListener("resize", setSize);
+  }, []);
+  return [containerRef, { height, width }];
 };
 
 export default Game;

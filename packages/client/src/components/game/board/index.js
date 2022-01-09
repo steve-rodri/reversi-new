@@ -1,35 +1,37 @@
 import React, { useEffect } from "react";
+import Proptypes from "prop-types";
 import { useSelector, useDispatch } from "react-redux";
-import { AspectRatio, Box, Grid } from "@chakra-ui/react";
+import { Grid } from "@chakra-ui/react";
 import { boardActions } from "../../../redux";
 import Space from "./Space";
 
-const Board = () => {
+const Board = ({ size }) => {
   const dispatch = useDispatch();
   const { spaces, length } = useSelector(state => state.board);
+  console.log("board size", size);
   useEffect(() => {
     dispatch(boardActions.initialize());
     dispatch(boardActions.setStartingDiscs());
   }, []);
   return (
-    <AspectRatio ratio={1} minH="300px" minW="300px">
-      <Box>
-        <Grid
-          templateRows={`repeat(${length}, auto)`}
-          templateColumns={`repeat(${length}, auto)`}
-          gap="2px"
-          h="full"
-          w="full"
-        >
-          {spaces.map((row, y) =>
-            row.map((value, x) => (
-              <Space value={value} key={`${x}, ${y}`} coordinate={{ x, y }} />
-            ))
-          )}
-        </Grid>
-      </Box>
-    </AspectRatio>
+    <Grid
+      templateRows={`repeat(${length}, auto)`}
+      templateColumns={`repeat(${length}, auto)`}
+      gap="2px"
+      h={[size - 20, size - 50, size - 50, size - 100]}
+      w={[size - 20, size - 50, size - 50, size - 100]}
+    >
+      {spaces.map((row, y) =>
+        row.map((value, x) => (
+          <Space value={value} key={`${x}, ${y}`} coordinate={{ x, y }} />
+        ))
+      )}
+    </Grid>
   );
+};
+
+Board.propTypes = {
+  size: Proptypes.number,
 };
 
 export default Board;
