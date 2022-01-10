@@ -5,4 +5,5 @@ export const firstLetter = turn => {
 export const fullWord = turn => {
   if (turn === "w") return "white";
   if (turn === "b") return "black";
+  return "";
 };
