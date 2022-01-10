@@ -8,7 +8,6 @@ import Space from "./Space";
 const Board = ({ size }) => {
   const dispatch = useDispatch();
   const { spaces, length } = useSelector(state => state.board);
-  console.log("board size", size);
   useEffect(() => {
     dispatch(boardActions.initialize());
     dispatch(boardActions.setStartingDiscs());
