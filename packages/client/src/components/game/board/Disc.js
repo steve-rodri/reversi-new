@@ -2,8 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Circle } from "@chakra-ui/react";
 
-const Disc = ({ value }) => {
-  return <Circle bgColor={value} h="75%" w="75%" />;
+const Disc = ({ value, ...rest }) => {
+  return <Circle bgColor={value} h="75%" w="75%" {...rest} />;
 };
 
 Disc.propTypes = {
@@ -11,3 +11,7 @@ Disc.propTypes = {
 };
 
 export default Disc;
+
+//   return flipTransition(
+//     (props, item) =>
+//       item && <AnimatedCircle style={props} bgColor={value} h="75%" w="75%" />
