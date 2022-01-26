@@ -17,8 +17,8 @@ const Board = ({ size }) => {
       templateRows={`repeat(${length}, auto)`}
       templateColumns={`repeat(${length}, auto)`}
       gap="2px"
-      h={[size - 20, size - 50, size - 50, size - 100]}
-      w={[size - 20, size - 50, size - 50, size - 100]}
+      h={[size - 16, size - 50, size - 50, size - 100]}
+      w={[size - 16, size - 50, size - 50, size - 100]}
     >
       {spaces.map((row, y) =>
         row.map((value, x) => (
